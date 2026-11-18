@@ -206,6 +206,26 @@ assert.equal(
   assert.equal(post.image, undefined, "image を書いていない記事に image が付いた");
 }
 
+// --- イジログのプライバシーポリシーに未確定の値が残っていないか ---
+// アプリの設定画面とストアの審査がこのページを開く。【要確認】のまま公開しない。
+{
+  const { ijilogPrivacy, PENDING } = await jiti.import("../src/content/ijilog/privacy.ts");
+  const pending = [];
+  const visit = (v, where) => {
+    if (typeof v === "string") {
+      if (v.includes(PENDING)) pending.push(`${where}: ${v}`);
+    } else if (v && typeof v === "object") {
+      for (const [k, child] of Object.entries(v)) visit(child, `${where}.${k}`);
+    }
+  };
+  visit(ijilogPrivacy, "ijilogPrivacy");
+  assert.equal(
+    pending.length,
+    0,
+    `src/content/ijilog/privacy.ts に ${PENDING} が残っている（たにぐち自動車の住所・代表者・連絡先、制定日を埋める）:\n  ${pending.join("\n  ")}`,
+  );
+}
+
 console.log(
   `OK: routes=${routes.length} brandPaths=${brandPaths.length} officialSites=${officialUrls.length} ` +
     `internalHrefs=${checkedHrefs} newsPosts=${newsFiles.length}`,
