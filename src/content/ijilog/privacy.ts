@@ -28,7 +28,7 @@ const taniguchi = {
 };
 
 /** 制定日（例：'2026年12月1日'） */
-const enactedOn = PENDING;
+const enactedOn = '2026年12月1日';
 
 const holy = {
   name: companyInfo.name,
