@@ -21,10 +21,10 @@ export const PENDING = '【要確認】';
 /** 個人情報取扱事業者（本ポリシーの「当社」） */
 const taniguchi = {
   name: '株式会社たにぐち自動車',
-  address: `愛知県一宮市${PENDING}`,
-  representative: PENDING,
+  address: '〒491-0131 愛知県一宮市笹野宮西北1369-1',
+  representative: '代表取締役 谷口 敦史',
   email: PENDING,
-  tel: PENDING,
+  tel: '0586-82-5161',
 };
 
 /** 制定日（例：'2026年12月1日'） */
