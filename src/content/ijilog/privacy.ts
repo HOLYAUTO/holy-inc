@@ -23,7 +23,6 @@ const taniguchi = {
   name: '株式会社たにぐち自動車',
   address: '〒491-0131 愛知県一宮市笹野宮西北1369-1',
   representative: '代表取締役 谷口 敦史',
-  email: PENDING,
   tel: '0586-82-5161',
 };
 
@@ -408,7 +407,6 @@ export const ijilogPrivacy = {
           type: 'table',
           rows: [
             ['窓口', taniguchi.name],
-            ['メールアドレス', taniguchi.email],
             ['電話番号', taniguchi.tel],
           ],
         },
