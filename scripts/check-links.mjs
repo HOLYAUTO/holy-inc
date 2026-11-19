@@ -206,10 +206,12 @@ assert.equal(
   assert.equal(post.image, undefined, "image を書いていない記事に image が付いた");
 }
 
-// --- イジログのプライバシーポリシーに未確定の値が残っていないか ---
+// --- イジログの規約類に未確定の値が残っていないか ---
 // アプリの設定画面とストアの審査がこのページを開く。【要確認】のまま公開しない。
 {
-  const { ijilogPrivacy, PENDING } = await jiti.import("../src/content/ijilog/privacy.ts");
+  const { PENDING } = await jiti.import("../src/content/ijilog/shared.ts");
+  const { ijilogPrivacy } = await jiti.import("../src/content/ijilog/privacy.ts");
+  const { ijilogTerms } = await jiti.import("../src/content/ijilog/terms.ts");
   const pending = [];
   const visit = (v, where) => {
     if (typeof v === "string") {
@@ -219,11 +221,15 @@ assert.equal(
     }
   };
   visit(ijilogPrivacy, "ijilogPrivacy");
+  visit(ijilogTerms, "ijilogTerms");
   assert.equal(
     pending.length,
     0,
-    `src/content/ijilog/privacy.ts に ${PENDING} が残っている（たにぐち自動車の住所・代表者・連絡先、制定日を埋める）:\n  ${pending.join("\n  ")}`,
+    `src/content/ijilog/ に ${PENDING} が残っている（事業者の情報・制定日・料金を埋める）:\n  ${pending.join("\n  ")}`,
   );
+  for (const doc of [ijilogPrivacy, ijilogTerms]) {
+    assert.ok(routes.includes(doc.related.path), `${doc.title} の related.path ${doc.related.path} に対応するルートが無い`);
+  }
 }
 
 console.log(

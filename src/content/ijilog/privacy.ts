@@ -1,60 +1,26 @@
 /**
- * イジログ（スマートフォン向けアプリ）のプライバシーポリシー。
- *
- * 名義（個人情報取扱事業者）は株式会社たにぐち自動車。株式会社HOLY は開発・管理の委託先で、
- * 複数台プランの販売事業者・購入の情報の共同利用の管理責任者でもある。
- * 公開先を HOLY のホームページにすることは 2026-11-14 に決定（イジログ側 docs/open-questions.md #85）。
+ * イジログ（スマートフォン向けアプリ）のプライバシーポリシー。/ijilog/privacy に出す。
  *
  * 出典：holy-auto/carkeiboh の docs/legal/privacy-policy-draft.md。文面を変えるときは
  * あちらの下書きも合わせて直す。位置情報（第6項）は、アプリ内の説明・Google Play の申告・
  * ストアの説明と食い違うと審査で落ちるので、片方だけを変えない。
- *
- * 【要確認】が残っている間は公開しない（scripts/check-links.mjs が落とす）。
- * 埋めるのは下の `taniguchi` と `enactedOn` だけ。
+ * 事業者の情報は shared.ts にまとめてある。
  */
-// 相対パス：scripts/check-links.mjs（jiti）からも読むため、@ エイリアスを使わない
-import { companyInfo } from '../../mocks/company';
+import { APP_NAME, TERMS_PATH, holy as holyBase, taniguchi, type PolicyDocument } from './shared';
 
-/** 未確定の値の目印。check-links.mjs がこの文字列を探す。 */
-export const PENDING = '【要確認】';
-
-/** 個人情報取扱事業者（本ポリシーの「当社」） */
-const taniguchi = {
-  name: '株式会社たにぐち自動車',
-  address: '〒491-0131 愛知県一宮市笹野宮西北1369-1',
-  representative: '代表取締役 谷口 敦史',
-  tel: '0586-82-5161',
-};
-
-/** 制定日（例：'2026年12月1日'） */
+/** 制定日 */
 const enactedOn = '2026年12月1日';
 
-const holy = {
-  name: companyInfo.name,
-  address: `〒${companyInfo.postalCode} ${companyInfo.address}`,
-  representative: companyInfo.representative,
-  tel: companyInfo.tel,
-  email: 'privacy@holy-inc.jp',
-};
+// 個人情報の取扱いの窓口は privacy@ を使う
+const holy = { ...holyBase, email: holyBase.privacyEmail };
 
-export type PolicyBlock =
-  | { type: 'p'; text: string }
-  | { type: 'ol'; items: { title?: string; text: string }[] }
-  | { type: 'ul'; items: string[] }
-  | { type: 'table'; head?: string[]; rows: string[][] };
-
-export interface PolicySection {
-  num: string;
-  title: string;
-  blocks: PolicyBlock[];
-}
-
-export const ijilogPrivacy = {
-  appName: 'イジログ',
-  title: 'イジログ プライバシーポリシー',
-  operator: taniguchi.name,
-  developer: holy.name,
+export const ijilogPrivacy: PolicyDocument = {
+  numbering: 'circle',
+  label: 'Privacy Policy',
+  title: `${APP_NAME} プライバシーポリシー`,
+  description: `スマートフォン向けアプリ「${APP_NAME}」における利用者の情報の取扱いについて定めたプライバシーポリシーです。提供：${taniguchi.name}、開発・管理：${holy.name}。`,
   enactedOn,
+  related: { label: `${APP_NAME} 利用規約`, path: TERMS_PATH },
   preamble: `${taniguchi.name}（以下「当社」といいます）は、スマートフォン向けアプリ「イジログ」（以下「本アプリ」といいます）における利用者の情報の取扱いについて、以下のとおりプライバシーポリシー（以下「本ポリシー」といいます）を定めます。`,
   sections: [
     {
@@ -426,5 +392,5 @@ export const ijilogPrivacy = {
         },
       ],
     },
-  ] satisfies PolicySection[],
+  ],
 };

@@ -15,6 +15,7 @@ const Contact = lazy(pages.contact.factory);
 const Privacy = lazy(pages.privacy.factory);
 const Terms = lazy(pages.terms.factory);
 const IjilogPrivacy = lazy(pages.ijilogPrivacy.factory);
+const IjilogTerms = lazy(pages.ijilogTerms.factory);
 
 // Chunks are preloaded before the first render and before every navigation
 // (see main.tsx / useSmoothNavigation), so this is only a last resort. Keep it
@@ -34,6 +35,7 @@ const routes: RouteObject[] = [
   { path: "/privacy", element: <Suspense fallback={fallback}><Privacy /></Suspense> },
   { path: "/terms", element: <Suspense fallback={fallback}><Terms /></Suspense> },
   { path: "/ijilog/privacy", element: <Suspense fallback={fallback}><IjilogPrivacy /></Suspense> },
+  { path: "/ijilog/terms", element: <Suspense fallback={fallback}><IjilogTerms /></Suspense> },
   { path: "*", element: <Suspense fallback={fallback}><NotFound /></Suspense> },
 ];
 
