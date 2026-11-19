@@ -47,6 +47,7 @@ export const pages = {
   contact: route(() => import("../pages/contact/page")),
   privacy: route(() => import("../pages/privacy/page")),
   terms: route(() => import("../pages/terms/page")),
+  ijilogPrivacy: route(() => import("../pages/ijilog/privacy/page")),
   notFound: route(() => import("../pages/NotFound")),
 };
 
@@ -63,6 +64,7 @@ const exact: Record<string, PageKey> = {
   "/contact": "contact",
   "/privacy": "privacy",
   "/terms": "terms",
+  "/ijilog/privacy": "ijilogPrivacy",
 };
 
 function pageFor(pathname: string): PageKey {
