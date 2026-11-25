@@ -1,7 +1,7 @@
 /**
  * イジログ（スマートフォン向けアプリ）のプライバシーポリシー。/ijilog/privacy に出す。
  *
- * 出典：holy-auto/carkeiboh の docs/legal/privacy-policy-draft.md。文面を変えるときは
+ * 出典：holy-auto/carkeiboh の 社内資料/法務/プライバシーポリシー下書き.md。文面を変えるときは
  * あちらの下書きも合わせて直す。位置情報（第6項）は、アプリ内の説明・Google Play の申告・
  * ストアの説明と食い違うと審査で落ちるので、片方だけを変えない。
  * 事業者の情報は shared.ts にまとめてある。
