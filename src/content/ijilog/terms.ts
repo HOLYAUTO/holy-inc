@@ -1,7 +1,7 @@
 /**
  * イジログ（スマートフォン向けアプリ）の利用規約。/ijilog/terms に出す。
  *
- * 出典：holy-auto/carkeiboh の docs/legal/terms-of-service-draft.md。文面を変えるときは
+ * 出典：holy-auto/carkeiboh の 社内資料/法務/利用規約下書き.md。文面を変えるときは
  * あちらの下書きも合わせて直す。料金（第4条・特定商取引法の表記）は、ストアに登録した
  * 商品の価格と食い違わないようにする。
  * 事業者の情報は shared.ts にまとめてある。
